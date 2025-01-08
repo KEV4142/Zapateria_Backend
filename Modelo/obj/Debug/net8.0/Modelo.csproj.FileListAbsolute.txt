@@ -1,0 +1,11 @@
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/bin/Debug/net8.0/Modelo.deps.json
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/bin/Debug/net8.0/Modelo.dll
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/bin/Debug/net8.0/Modelo.pdb
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.GeneratedMSBuildEditorConfig.editorconfig
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.AssemblyInfoInputs.cache
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.AssemblyInfo.cs
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.csproj.CoreCompileInputs.cache
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.dll
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/refint/Modelo.dll
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.pdb
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/ref/Modelo.dll
