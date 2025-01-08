@@ -1,4 +1,5 @@
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/bin/Debug/net8.0/Persistencia.deps.json
+/home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/bin/Debug/net8.0/Persistencia.runtimeconfig.json
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/bin/Debug/net8.0/Persistencia.dll
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/bin/Debug/net8.0/Persistencia.pdb
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/bin/Debug/net8.0/Modelo.dll
@@ -8,8 +9,10 @@
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.AssemblyInfoInputs.cache
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.AssemblyInfo.cs
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.csproj.CoreCompileInputs.cache
+/home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.sourcelink.json
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persiste.7F7D6998.Up2Date
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.dll
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/refint/Persistencia.dll
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.pdb
+/home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/Persistencia.genruntimeconfig.cache
 /home/kgalvez/Escritorio/Zapateria/Backend/Persistencia/obj/Debug/net8.0/ref/Persistencia.dll

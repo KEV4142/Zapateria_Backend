@@ -5,6 +5,7 @@
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.AssemblyInfoInputs.cache
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.AssemblyInfo.cs
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.csproj.CoreCompileInputs.cache
+/home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.sourcelink.json
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.dll
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/refint/Modelo.dll
 /home/kgalvez/Escritorio/Zapateria/Backend/Modelo/obj/Debug/net8.0/Modelo.pdb
