@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
-await app.SeedDataAuthentication();
+// await app.SeedDataAuthentication();
 app.UseCors("corsapp");
 app.MapControllers();
 

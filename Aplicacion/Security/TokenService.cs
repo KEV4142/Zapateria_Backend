@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Aplicacion.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,34 +15,24 @@ public class TokenService : ITokenService
 {
     private readonly BackendContext _context;
     private readonly IConfiguration _configuration;
+    private readonly UserManager<AppUser> _userManager;
 
-    public TokenService(BackendContext context, IConfiguration configuration)
+    public TokenService(BackendContext context, IConfiguration configuration, UserManager<AppUser> userManager)
     {
         _context = context;
         _configuration = configuration;
+        _userManager = userManager;
     }
 
     public async Task<string> CreateToken(AppUser usuario)
     {
-        var policies = await _context.Database.SqlQuery<string>($@"
-                SELECT
-                    aspr.ClaimValue
-                FROM AspNetUsers a
-                    LEFT JOIN AspNetUserRoles ar
-                        ON a.Id=ar.UserId
-                    LEFT JOIN AspNetRoleClaims aspr
-                        ON ar.RoleId = aspr.RoleId
-                    WHERE a.Id = {usuario.Id}
-        ").ToListAsync();
+        var roles = await _userManager.GetRolesAsync(usuario);
 
-        var roles = await _context.Database.SqlQuery<string>($@"
-            SELECT
-                r.Name
-            FROM AspNetUserRoles ur
-                INNER JOIN AspNetRoles r
-                ON ur.RoleId = r.Id
-            WHERE ur.UserId = {usuario.Id}
-            ").ToListAsync();
+        var policies = await (from rc in _context.RoleClaims
+                      join r in _context.Roles on rc.RoleId equals r.Id into roleGroup
+                      from role in roleGroup.DefaultIfEmpty()
+                      where role != null && roles.Contains(role.Name!)
+                      select rc.ClaimValue).ToListAsync();
 
         var claims = new List<Claim>
         {

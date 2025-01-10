@@ -1,4 +1,5 @@
 using Aplicacion.Core;
+using Aplicacion.Tablas.Accounts.Login;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +18,8 @@ public static class DependencyInjection
             //configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
         services.AddFluentValidationAutoValidation();
-        // services.AddValidatorsFromAssemblyContaining<TransportistaCreateCommand>();
-        //services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+        services.AddValidatorsFromAssemblyContaining<LoginCommand>();
+        // services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
