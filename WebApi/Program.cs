@@ -29,10 +29,7 @@ builder.Services.AddPersistencia(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddPoliciesServices();
 
-builder.Services
-.Configure<CloudinarySettings>
-(builder.Configuration.GetSection(nameof(CloudinarySettings)));
-
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(nameof(CloudinarySettings)));
 builder.Services.AddScoped<IImagenService, ImagenService>();
 
 

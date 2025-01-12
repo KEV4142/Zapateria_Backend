@@ -21,7 +21,7 @@ public class ImagenService : IImagenService
         _cloudinary = new Cloudinary(account);
     }
 
-    public async Task<ImagenUploadResult> AddPhoto(IFormFile file)
+    public async Task<ImagenUploadResult> AddImagen(IFormFile file)
     {
         if(file.Length > 0)
         {
@@ -50,7 +50,7 @@ public class ImagenService : IImagenService
         return null!;
     }
 
-    public async Task<string> DeletePhoto(string publicId)
+    public async Task<string> DeleteImagen(string publicId)
     {
         var deleteParams = new DeletionParams(publicId);
         var result =  await _cloudinary.DestroyAsync(deleteParams);

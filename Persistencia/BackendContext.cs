@@ -38,7 +38,7 @@ public partial class BackendContext : IdentityDbContext<AppUser>
         {
             entity.HasKey(e => e.imagenid).HasName("pkimagenid");
 
-            entity.ToTable("imagen");
+            entity.ToTable("imagenes");
 
             entity.Property(e => e.publicid).HasMaxLength(100);
             entity.Property(e => e.url).HasMaxLength(100);

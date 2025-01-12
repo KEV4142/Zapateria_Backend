@@ -5,7 +5,7 @@ namespace Aplicacion.Interfaces;
 
 public interface IImagenService
 {
-    Task<ImagenUploadResult> AddPhoto(IFormFile file);
+    Task<ImagenUploadResult> AddImagen(IFormFile file);
 
-    Task<string> DeletePhoto(string publicId);
+    Task<string> DeleteImagen(string publicId);
 }
