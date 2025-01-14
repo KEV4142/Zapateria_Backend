@@ -54,22 +54,19 @@ public class ProductoCreateCommand
                 var imagenUploadResult = 
                 await _imagenService.AddImagen(request.productoCreateRequest.imagenProducto);
 
-                var imagenn = new Imagen
+                var imagenProducto = new Imagen
                 {
                     url = imagenUploadResult.Url!,
                     publicid = imagenUploadResult.PublicId!,
                 };
 
-                producto.imagen = imagenn;
+                producto.imagen = imagenProducto;
             }
-
-
 
             _context.Add(producto);
 
             var resultado = await _context.SaveChangesAsync(cancellationToken) > 0;
          
-
             return resultado 
                         ? Result<int>.Success(producto.productoid)
                         : Result<int>.Failure("No se pudo insertar el producto");

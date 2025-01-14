@@ -25,13 +25,18 @@ public class GetCategoriaQuery
         }
 
         public async Task<Result<CategoriaResponse>> Handle(
-            GetCategoriaQueryRequest request, 
+            GetCategoriaQueryRequest request,
             CancellationToken cancellationToken
         )
         {
             var categoria = await _context.categorias!.Where(x => x.categoriaid == request.CategoriaID)
             .ProjectTo<CategoriaResponse>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
+
+            if (categoria is null)
+            {
+                return Result<CategoriaResponse>.Failure("No se encontro la Categoria.");
+            }
 
             return Result<CategoriaResponse>.Success(categoria!);
         }

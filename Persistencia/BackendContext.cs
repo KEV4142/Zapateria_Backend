@@ -42,6 +42,9 @@ public partial class BackendContext : IdentityDbContext<AppUser>
 
             entity.Property(e => e.publicid).HasMaxLength(100);
             entity.Property(e => e.url).HasMaxLength(100);
+            entity.Property(e => e.estado)
+                .HasMaxLength(1)
+                .HasDefaultValueSql("'A'::character varying");
         });
 
         modelBuilder.Entity<Producto>(entity =>

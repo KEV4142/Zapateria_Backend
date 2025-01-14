@@ -2,11 +2,10 @@ using System.Security.Cryptography.X509Certificates;
 namespace Aplicacion.Tablas.Imagenes.GetImagen;
 
 public record ImagenResponse(
-Guid? Id,
-string? Url,
-Guid? CursoId)
+int? imagenID,
+string? Url)
 {
-    public ImagenResponse() : this(null, null, null)
+    public ImagenResponse() : this(null, null)
     {
     }
 }

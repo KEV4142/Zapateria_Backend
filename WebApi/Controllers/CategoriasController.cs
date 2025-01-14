@@ -109,7 +109,7 @@ public class CategoriasController : ControllerBase
     [Authorize(PolicyMaster.CATEGORIA_READ)]
     [HttpGet("paginacion")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<ActionResult<PagedList<CategoriaResponse>>> PaginationSucursales(
+    public async Task<ActionResult<PagedList<CategoriaResponse>>> PaginationCategorias(
         [FromQuery] GetCategoriasPaginRequest request,
         CancellationToken cancellationToken
     )

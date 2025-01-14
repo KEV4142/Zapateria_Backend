@@ -1,3 +1,4 @@
+using System.Globalization;
 using Aplicacion;
 using Aplicacion.Imagenes;
 using Aplicacion.Interfaces;
@@ -23,6 +24,9 @@ builder.Configuration
     
     });
 
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 builder.Services.AddApplicacion();
 builder.Services.AddPersistencia(builder.Configuration);
