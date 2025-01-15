@@ -1,5 +1,6 @@
-using Aplicacion.Tablas.Categorias.GetCategoria;
-using Aplicacion.Tablas.Productos.GetProducto;
+using Aplicacion.Tablas.Categorias.Response;
+using Aplicacion.Tablas.Imagenes.GetImagen;
+using Aplicacion.Tablas.Productos.Response;
 using AutoMapper;
 using Modelo.Entidades;
 
@@ -9,6 +10,10 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Categoria, CategoriaResponse>();
+        CreateMap<Categoria, CategoriaProductoResponse>();
         CreateMap<Producto, ProductoResponse>();
+        CreateMap<Producto, ProductoListaResponse>();
+        CreateMap<Producto, ProductoCompletoResponse>();
+        CreateMap<Imagen, ImagenResponse>();
     }
 }

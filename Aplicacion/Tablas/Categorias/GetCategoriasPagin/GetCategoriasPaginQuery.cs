@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using Aplicacion.Core;
-using Aplicacion.Tablas.Categorias.GetCategoria;
+using Aplicacion.Tablas.Categorias.Response;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;

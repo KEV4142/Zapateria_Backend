@@ -1,4 +1,5 @@
 using Aplicacion.Core;
+using Aplicacion.Tablas.Categorias.Response;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -44,8 +45,3 @@ public class GetCategoriaQuery
 
     }
 }
-public record CategoriaResponse(
-    int categoriaid,
-    string descripcion,
-    string estado
-);

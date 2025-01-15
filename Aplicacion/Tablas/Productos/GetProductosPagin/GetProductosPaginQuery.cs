@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 using Aplicacion.Core;
-using Aplicacion.Tablas.Productos.GetProducto;
+using Aplicacion.Tablas.Productos.Response;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -10,13 +10,13 @@ using Persistencia;
 namespace Aplicacion.Tablas.Productos.GetProductosPagin;
 public class GetProductosPaginQuery
 {
-    public record GetProductosPaginQueryRequest : IRequest<Result<PagedList<ProductoResponse>>>
+    public record GetProductosPaginQueryRequest : IRequest<Result<PagedList<ProductoListaResponse>>>
     {
         public GetProductosPaginRequest? ProductosPaginRequest { get; set; }
     }
 
     internal class GetProductosPaginQueryHandler
-    : IRequestHandler<GetProductosPaginQueryRequest, Result<PagedList<ProductoResponse>>>
+    : IRequestHandler<GetProductosPaginQueryRequest, Result<PagedList<ProductoListaResponse>>>
     {
         private readonly BackendContext _context;
         private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ public class GetProductosPaginQuery
             _mapper = mapper;
         }
 
-        public async Task<Result<PagedList<ProductoResponse>>> Handle(
+        public async Task<Result<PagedList<ProductoListaResponse>>> Handle(
             GetProductosPaginQueryRequest request,
             CancellationToken cancellationToken
         )
@@ -79,16 +79,16 @@ public class GetProductosPaginQuery
             queryable = queryable.Where(predicate);
 
             var productosQuery = queryable
-            .ProjectTo<ProductoResponse>(_mapper.ConfigurationProvider)
+            .ProjectTo<ProductoListaResponse>(_mapper.ConfigurationProvider)
             .AsQueryable();
 
-            var pagination = await PagedList<ProductoResponse>.CreateAsync(
+            var pagination = await PagedList<ProductoListaResponse>.CreateAsync(
                 productosQuery,
                 request.ProductosPaginRequest.PageNumber,
                 request.ProductosPaginRequest.PageSize
             );
 
-            return Result<PagedList<ProductoResponse>>.Success(pagination);
+            return Result<PagedList<ProductoListaResponse>>.Success(pagination);
 
         }
     }

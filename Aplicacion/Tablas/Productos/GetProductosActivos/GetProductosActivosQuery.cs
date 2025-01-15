@@ -1,5 +1,5 @@
 using Aplicacion.Core;
-using Aplicacion.Tablas.Productos.GetProducto;
+using Aplicacion.Tablas.Productos.Response;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;

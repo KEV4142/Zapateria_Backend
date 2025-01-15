@@ -1,18 +1,21 @@
 using Aplicacion.Core;
+using Aplicacion.Tablas.Productos.Response;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistencia;
 
+
+
 namespace Aplicacion.Tablas.Productos.GetProducto;
 public class GetProductoQuery
 {
-    public record GetProductoQueryRequest : IRequest<Result<ProductoResponse>>
+    public record GetProductoQueryRequest : IRequest<Result<ProductoCompletoResponse>>
     {
         public int ProductoID { get; set; }
     }
-    internal class GetProductoQueryHandler : IRequestHandler<GetProductoQueryRequest, Result<ProductoResponse>>
+    internal class GetProductoQueryHandler : IRequestHandler<GetProductoQueryRequest, Result<ProductoCompletoResponse>>
     {
         private readonly BackendContext _context;
         private readonly IMapper _mapper;
@@ -23,31 +26,23 @@ public class GetProductoQuery
             _mapper = mapper;
         }
 
-        public async Task<Result<ProductoResponse>> Handle(
+        public async Task<Result<ProductoCompletoResponse>> Handle(
             GetProductoQueryRequest request,
             CancellationToken cancellationToken
         )
         {
             var producto = await _context.productos!.Where(x => x.productoid == request.ProductoID)
-            .ProjectTo<ProductoResponse>(_mapper.ConfigurationProvider)
+            .ProjectTo<ProductoCompletoResponse>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
             if (producto is null)
             {
-                return Result<ProductoResponse>.Failure("No se encontro el Producto.");
+                return Result<ProductoCompletoResponse>.Failure("No se encontro el Producto.");
             }
 
-            return Result<ProductoResponse>.Success(producto!);
+            return Result<ProductoCompletoResponse>.Success(producto!);
         }
 
 
     }
 }
-public record ProductoResponse(
-    int productoid,
-    string descripcion,
-    decimal precio,
-    int categoriaid,
-    int imagenid,
-    string estado
-);

@@ -1,11 +1,11 @@
 using System.Net;
 using Aplicacion.Core;
-using Aplicacion.Tablas.Productos.GetProducto;
 using Aplicacion.Tablas.Productos.GetProductosPagin;
 using Aplicacion.Tablas.Productos.ProductoCreate;
 using Aplicacion.Tablas.Productos.ProductoUpdate;
 using Aplicacion.Tablas.Productos.ProductoUpdateEstado;
 using Aplicacion.Tablas.Productos.ProductoUpdateImagen;
+using Aplicacion.Tablas.Productos.Response;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -86,7 +86,7 @@ public class ProductosController : ControllerBase
     [Authorize(PolicyMaster.PRODUCTOS_READ)]
     [HttpGet("{id}")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<ActionResult<ProductoResponse>> ProductoGet(
+    public async Task<ActionResult<ProductoCompletoResponse>> ProductoGet(
         int id,
         CancellationToken cancellationToken
     )
@@ -125,7 +125,7 @@ public class ProductosController : ControllerBase
     [Authorize(PolicyMaster.PRODUCTOS_READ)]
     [HttpGet("paginacion")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<ActionResult<PagedList<ProductoResponse>>> PaginationProductos(
+    public async Task<ActionResult<PagedList<ProductoListaResponse>>> PaginationProductos(
         [FromQuery] GetProductosPaginRequest request,
         CancellationToken cancellationToken
     )
