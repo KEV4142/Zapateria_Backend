@@ -29,4 +29,8 @@ public record ProductoCompletoResponse(
     CategoriaProductoResponse categoria,
     ImagenResponse? imagen
 );
+public class ProductoWebResponse{
+    public string detalle { get; set; } = null!;
+    public string? url{ get; set;}
+}
 

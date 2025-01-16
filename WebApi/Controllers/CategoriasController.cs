@@ -16,6 +16,7 @@ using static Aplicacion.Tablas.Categorias.GetCategoria.GetCategoriaQuery;
 using static Aplicacion.Tablas.Categorias.GetCategorias.GetCategoriasQuery;
 using static Aplicacion.Tablas.Categorias.GetCategoriasActivos.GetCategoriasActivosQuery;
 using static Aplicacion.Tablas.Categorias.GetCategoriasPagin.GetCategoriasPaginQuery;
+using static Aplicacion.Tablas.Categorias.GetCategoriasWeb.GetCategoriasWebQuery;
 
 namespace WebApi.Controllers;
 
@@ -119,5 +120,18 @@ public class CategoriasController : ControllerBase
         var resultado = await _sender.Send(query, cancellationToken);
 
         return resultado.IsSuccess ? Ok(resultado.Value) : NotFound(resultado);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("web")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    public async Task<ActionResult<CategoriaWebResponse>> CategoriasWebGet(
+        CancellationToken cancellationToken
+    )
+    {
+        var query = new GetCategoriasWebQueryRequest();
+        var resultado = await _sender.Send(query, cancellationToken);
+        return resultado.IsSuccess ? Ok(resultado.Value) : BadRequest(resultado);
     }
 }

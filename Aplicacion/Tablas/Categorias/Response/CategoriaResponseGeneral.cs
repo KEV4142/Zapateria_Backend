@@ -7,3 +7,7 @@ public record CategoriaResponse(
 public record CategoriaProductoResponse(
     string descripcion
 );
+public class CategoriaWebResponse{
+    public int id { get; set; }
+    public string detalle { get; set; } = null!;
+}
