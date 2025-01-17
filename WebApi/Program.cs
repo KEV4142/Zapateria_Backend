@@ -20,8 +20,9 @@ builder.Configuration
         { "TokenKey", Environment.GetEnvironmentVariable("TOKEN_KEY")! },
         { "CloudinarySettings:CloudName", Environment.GetEnvironmentVariable("C_CLOUDNAME")! },
         { "CloudinarySettings:ApiKey", Environment.GetEnvironmentVariable("C_APIKEY")! },
-        { "CloudinarySettings:ApiSecret", Environment.GetEnvironmentVariable("C_APISECRET")! }
-    
+        { "CloudinarySettings:ApiSecret", Environment.GetEnvironmentVariable("C_APISECRET")! },
+        { "AllowedHosts", Environment.GetEnvironmentVariable("BACKEND_ORIGIN")! },
+        { "AllowedFrontendHosts", Environment.GetEnvironmentVariable("FRONTEND_ORIGIN")! }
     });
 
 var cultureInfo = new CultureInfo("en-US");
@@ -43,9 +44,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerDocumentation();
 
-builder.Services.AddCors(o => o.AddPolicy("corsapp", builder => {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+
+var allowedFrontendOrigins = builder.Configuration.GetSection("AllowedFrontendHosts").Get<string>();
+builder.Services.AddCors(o => o.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins(allowedFrontendOrigins!).AllowAnyMethod().AllowAnyHeader();
 }));
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 
 var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
@@ -56,6 +63,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
+// app.UseHttpsRedirection();
+
 // await app.SeedDataAuthentication();
 app.UseCors("corsapp");
 app.MapControllers();
