@@ -8,9 +8,18 @@ using WebApi.Extensions;
 using WebApi.Middleware;
 
 Env.Load();
-var builder = WebApplication.CreateBuilder(args);
+// var builder = WebApplication.CreateBuilder(args);
+
+var basePath = AppContext.BaseDirectory;
+
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ContentRootPath = basePath,
+    Args = args
+});
 
 builder.Configuration
+    .SetBasePath(basePath)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
     .AddEnvironmentVariables()
