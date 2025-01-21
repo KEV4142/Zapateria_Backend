@@ -1,12 +1,14 @@
 using System.Net;
 using Aplicacion.Interfaces;
 using Aplicacion.Tablas.Accounts;
+using Aplicacion.Tablas.Accounts.GetCurrentUser;
 using Aplicacion.Tablas.Accounts.Login;
 using Aplicacion.Tablas.Accounts.UsuarioUpdatePassword;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Modelo.Entidades;
+using static Aplicacion.Tablas.Accounts.GetCurrentUser.GetCurrentUserQuery;
 using static Aplicacion.Tablas.Accounts.Login.LoginCommand;
 using static Aplicacion.Tablas.Accounts.UsuarioUpdatePassword.UsuarioUpdatePasswordCommand;
 
@@ -48,6 +50,17 @@ public class AccountController : ControllerBase
     {
         var command = new UsuarioUpdatePasswordCommandRequest(request,id);
         var resultado = await _sender.Send(command, cancellationToken);
+        return resultado.IsSuccess ? Ok(resultado.Value) : Unauthorized(resultado);
+    }
+    [Authorize]
+    [HttpGet("me")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    public async Task<ActionResult<Profile>> Me(CancellationToken cancellationToken)
+    {
+        var email = _user.GetEmail();
+        var request = new GetCurrentUserRequest {Email = email};
+        var query = new GetCurrentUserQueryRequest(request);
+        var resultado =  await _sender.Send(query, cancellationToken);
         return resultado.IsSuccess ? Ok(resultado.Value) : Unauthorized(resultado);
     }
 }
