@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Modelo.Entidades;
 using static Aplicacion.Tablas.Productos.GetProducto.GetProductoQuery;
+using static Aplicacion.Tablas.Productos.GetProductoImagen.GetProductoImagenQuery;
 using static Aplicacion.Tablas.Productos.GetProductos.GetProductosQuery;
 using static Aplicacion.Tablas.Productos.GetProductosActivos.GetProductosActivosQuery;
 using static Aplicacion.Tablas.Productos.GetProductosPagin.GetProductosPaginQuery;
@@ -147,6 +148,20 @@ public class ProductosController : ControllerBase
     )
     {
         var query = new GetProductosWebQueryRequest();
+        var resultado = await _sender.Send(query, cancellationToken);
+        return resultado.IsSuccess ? Ok(resultado.Value) : BadRequest(resultado);
+    }
+
+    [Authorize(PolicyMaster.PRODUCTOS_READ)]
+    [HttpGet("imagen/{id}")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    public async Task<ActionResult<ProductoImagenResponse>> ProductoImagenGet(
+        int id,
+        CancellationToken cancellationToken
+    )
+    {
+        var query = new GetProductoImagenQueryRequest{ ProductoID = id };
         var resultado = await _sender.Send(query, cancellationToken);
         return resultado.IsSuccess ? Ok(resultado.Value) : BadRequest(resultado);
     }

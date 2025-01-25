@@ -20,6 +20,11 @@ public class MappingProfile : Profile
         CreateMap<Producto, ProductoWebResponse>()
             .ForMember(dest => dest.detalle, opt => opt.MapFrom(src => src.categoria.descripcion))
             .ForMember(dest => dest.url, opt => opt.MapFrom(src => src.imagen!.url));
+        CreateMap<Producto, ProductoImagenResponse>()
+            .ForMember(dest => dest.productoid, opt => opt.MapFrom(src => src.productoid))
+            .ForMember(dest => dest.descripcion, opt => opt.MapFrom(src => src.descripcion))
+            .ForMember(dest => dest.categoria, opt => opt.MapFrom(src => src.categoria.descripcion))
+            .ForMember(dest => dest.url, opt => opt.MapFrom(src => src.imagen!.url));
         CreateMap<Imagen, ImagenResponse>();
     }
 }

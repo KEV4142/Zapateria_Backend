@@ -34,3 +34,9 @@ public class ProductoWebResponse{
     public string? url{ get; set;}
 }
 
+public class ProductoImagenResponse{
+    public int productoid { get; set; }
+    public string? descripcion { get;set; }
+    public string categoria { get;set; }= null!;
+    public string? url{ get; set;}
+}
