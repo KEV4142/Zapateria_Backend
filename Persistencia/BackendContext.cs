@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Entidades;
 using Persistencia.Models;
@@ -23,6 +24,10 @@ public partial class BackendContext : IdentityDbContext<AppUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        var adminRoleId = "51df7aae-a506-46ff-8e34-9f2f0c661885";
+        var clientRoleId = "368cb24e-03d3-4a01-b558-dbde9b33272c";
+
+
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Categoria>(entity =>
         {
@@ -66,5 +71,39 @@ public partial class BackendContext : IdentityDbContext<AppUser>
                 .HasForeignKey(d => d.imagenid)
                 .HasConstraintName("fkproductoimagenid");
         });
+
+        modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = adminRoleId,
+                    Name = CustomRoles.ADMIN,
+                    NormalizedName = CustomRoles.ADMIN
+                },
+                new IdentityRole
+                {
+                    Id = clientRoleId,
+                    Name = CustomRoles.CLIENT,
+                    NormalizedName = CustomRoles.CLIENT
+                }
+            );
+
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(
+                new IdentityRoleClaim<string> { Id = 1, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.CATEGORIA_READ },
+                new IdentityRoleClaim<string> { Id = 2, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.CATEGORIA_UPDATE },
+                new IdentityRoleClaim<string> { Id = 3, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.CATEGORIA_CREATE },
+                new IdentityRoleClaim<string> { Id = 4, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.PRODUCTOS_READ },
+                new IdentityRoleClaim<string> { Id = 5, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.PRODUCTOS_UPDATE },
+                new IdentityRoleClaim<string> { Id = 6, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.PRODUCTOS_CREATE },
+                new IdentityRoleClaim<string> { Id = 7, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.IMAGEN_READ },
+                new IdentityRoleClaim<string> { Id = 8, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.IMAGEN_UPDATE },
+                new IdentityRoleClaim<string> { Id = 9, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.IMAGEN_CREATE },
+                new IdentityRoleClaim<string> { Id = 10, RoleId = adminRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.USUARIO_CREATE },
+
+                new IdentityRoleClaim<string> { Id = 11, RoleId = clientRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.CATEGORIA_READ },
+                new IdentityRoleClaim<string> { Id = 12, RoleId = clientRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.PRODUCTOS_READ },
+                new IdentityRoleClaim<string> { Id = 13, RoleId = clientRoleId, ClaimType = "POLICIES", ClaimValue = PolicyMaster.IMAGEN_READ }
+            );
+
     }
 }
