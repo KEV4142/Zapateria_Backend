@@ -59,8 +59,14 @@ builder.Services.AddCors(o => o.AddPolicy("corsapp", builder =>
 {
     builder.WithOrigins(allowedFrontendOrigins!).AllowAnyMethod().AllowAnyHeader();
 }));
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-builder.WebHost.UseUrls($"http://*:{port}");
+/* var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls($"http://*:{port}"); */
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080"; 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(int.Parse(port));
+});
 
 
 var app = builder.Build();
