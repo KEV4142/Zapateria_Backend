@@ -60,11 +60,21 @@ builder.Services.AddCors(o => o.AddPolicy("corsapp", builder =>
     builder.WithOrigins(allowedFrontendOrigins!).AllowAnyMethod().AllowAnyHeader();
 }));
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+/* var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+Console.WriteLine($"🚀 Servidor iniciando en el puerto: {port}");
+
+builder.WebHost.UseUrls($"http://*:{port}"); */
+
+var port = Environment.GetEnvironmentVariable("PORT"); 
+
+if (string.IsNullOrEmpty(port))
+{
+    port = "5000";
+}
+
 Console.WriteLine($"🚀 Servidor iniciando en el puerto: {port}");
 
 builder.WebHost.UseUrls($"http://*:{port}");
-
 
 var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
