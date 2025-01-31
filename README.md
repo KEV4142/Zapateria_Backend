@@ -59,7 +59,7 @@ Este repositorio contiene el backend de una aplicación para la gestión de una 
    El servidor estará disponible en `http://localhost:5000` por defecto (o `https://localhost:5001` para HTTPS).
 
 ## Uso
-- Usa herramientas como [Postman](https://www.postman.com/) o [Insomnia](https://insomnia.rest/) para probar los endpoints de la API.
+- Usa herramientas como [Postman](https://www.postman.com/) para probar los endpoints de la API.
 - Integra el backend con el frontend especificando el origen permitido en `FRONTEND_ORIGIN`.
 
 ## Despliegue
@@ -67,6 +67,7 @@ Puedes desplegar este proyecto en cualquier servicio compatible, como Azure App 
 
 ## Tecnologías utilizadas
 - **.NET 8**: Framework principal para el backend.
+- **Supabase**: Almacenamiento para motor de base de datos.
 - **PostgreSQL**: Base de datos relacional.
 - **Cloudinary**: Almacenamiento de imágenes.
 

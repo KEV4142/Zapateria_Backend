@@ -1,1 +1,0 @@
-web: dotnet WebApi/bin/publish/WebApi.dll
