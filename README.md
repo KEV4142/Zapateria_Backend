@@ -32,9 +32,10 @@ Este repositorio contiene el backend de una aplicación para la gestión de una 
    C_APISECRET= [Campo brindado por Cloudinary]
    FRONTEND_ORIGIN=*
    BACKEND_ORIGIN=*
+   #PORT=5000
    ```
 
-   > **Nota:** Cambia estas variables de entorno según tus necesidades y evita compartir credenciales sensibles en repositorios públicos. Adicional las ultimas 2 variables es para habilitar la funcion CORS y qué encabezados de host (Host) son permitidos al realizar solicitudes al servidor.
+   > **Nota:** Cambia estas variables de entorno según tus necesidades y evita compartir credenciales sensibles en repositorios públicos. Adicional las ultimas 2 variables es para habilitar la funcion CORS y qué encabezados de host (Host) son permitidos al realizar solicitudes al servidor. La variable PORT dependera del servicio donde se despliegue.
 
 3. **Restaurar las dependencias:**
    Ejecuta el siguiente comando para restaurar los paquetes necesarios:
